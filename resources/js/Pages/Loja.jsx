@@ -1,36 +1,21 @@
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-import LojaNav from "../Components/Organismos/LojaNav";
 import React from "react";
-
-export const LojaContexto = React.createContext(
-    {
-        options: [],
-        current: 0,
-        setCurrent: () => { },
-    });
-
+import LojaNav from "../Components/Organismos/LojaNav";
+import LojaContextProvider from "@/LojaContexto";
+import LojaBanner from "@/Components/Atomos/LojaBanner";
+import LojaRecomendados from "@/Components/Organismos/LojaRecomendados";
 
 export default function Loja({ children }) {
-    const options = [
-        'Home',
-        'Browse',
-        'Discover',
-        'Points Shop',
-        'Gift Cards',
-        'News',
-    ];
-
-    const [current, setCurrent] = React.useState(0);
-
 
     return (
-        <LojaContexto.Provider value={{ options, current, setCurrent }}>
+        <LojaContextProvider>
             <Authenticated>
                 <div className="">
                     <LojaNav />
+                    <LojaBanner />
+                    <LojaRecomendados />
                 </div>
             </Authenticated>
-            {children}
-        </LojaContexto.Provider>
-    );
+        </LojaContextProvider>
+    )
 }

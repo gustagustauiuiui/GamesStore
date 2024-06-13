@@ -1,10 +1,8 @@
-import { LojaContexto } from "@/Pages/Loja";
 import { useContext } from "react"
-import NavButton from "../Atomos/NabButton";
 import SecondaryButton from "../Atomos/SecondaryButton";
-import TextInput from "../Atomos/TextInput";
 import BarraPesquisa from "../Moluculas/BarraPesquisa";
-import { Input } from "@mui/material";
+import { LojaContexto } from "@/LojaContexto";
+
 
 export default function LojaNav() {
 
@@ -18,17 +16,23 @@ export default function LojaNav() {
     }
 
     return (
-        <div className="w-full bg-[#031B22] flex gap-4 px-4 py-2">
-            {options.map((o, i) => (
-                <SecondaryButton
-                    key={i}
-                    className={`font-extralight`}
-                    current={i == current}
-                    onClick={(e) => toggleCurrent(i)}
-                >{o}</SecondaryButton>
-            )
-            )}
-            <BarraPesquisa></BarraPesquisa>
+        <div className="w-full bg-[#031B22] flex px-4 py-2 items-center justify-between sticky top-0">
+            <div className="flex gap-4">
+                {options.map((o, i) => (
+                    <SecondaryButton
+                        key={i}
+                        className={`font-extralight`}
+                        current={i == current}
+                        onClick={(e) => toggleCurrent(i)}
+                    >{o}</SecondaryButton>
+                )
+                )}
+            </div>
+            <div className="px-8 flex justify-end items-center gap-4">
+                <BarraPesquisa></BarraPesquisa>
+                <SecondaryButton className="font-medium text-base ml-24">Wishlist</SecondaryButton>
+                <SecondaryButton className="font-medium text-base">Cart</SecondaryButton>
+            </div>
         </div>
     )
 }
